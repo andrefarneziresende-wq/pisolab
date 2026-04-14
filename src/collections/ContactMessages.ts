@@ -9,6 +9,7 @@ export const ContactMessages: CollectionConfig = {
   admin: {
     useAsTitle: 'name',
     defaultColumns: ['name', 'email', 'service', 'messageStatus', 'createdAt'],
+    group: 'Comunicación',
   },
   access: {
     read: () => true,

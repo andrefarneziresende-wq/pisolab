@@ -9,6 +9,7 @@ export const Projects: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'services', 'location', 'featured', 'status'],
+    group: 'Contenido',
   },
   access: {
     read: () => true,

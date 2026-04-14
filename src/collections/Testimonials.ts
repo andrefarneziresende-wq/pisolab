@@ -9,6 +9,7 @@ export const Testimonials: CollectionConfig = {
   admin: {
     useAsTitle: 'clientName',
     defaultColumns: ['clientName', 'rating', 'service', 'featured', 'status'],
+    group: 'Contenido',
   },
   access: {
     read: () => true,

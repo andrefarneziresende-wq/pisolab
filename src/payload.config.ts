@@ -3,6 +3,7 @@ import { buildConfig } from 'payload'
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { seoPlugin } from '@payloadcms/plugin-seo'
+import { es } from '@payloadcms/translations/languages/es'
 import sharp from 'sharp'
 import { fileURLToPath } from 'url'
 
@@ -36,6 +37,13 @@ export default buildConfig({
       },
     },
   },
+
+  i18n: {
+    supportedLanguages: { es },
+    fallbackLanguage: 'es',
+  },
+
+  localization: false,
 
   collections: [
     Services,

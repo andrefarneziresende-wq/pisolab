@@ -3,6 +3,9 @@ import type { GlobalConfig } from 'payload'
 export const LegalTexts: GlobalConfig = {
   slug: 'legal-texts',
   label: 'Textos legales',
+  admin: {
+    group: 'Ajustes',
+  },
   access: {
     read: () => true,
   },

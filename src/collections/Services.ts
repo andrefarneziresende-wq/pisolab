@@ -9,6 +9,7 @@ export const Services: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'order', 'status', 'updatedAt'],
+    group: 'Contenido',
   },
   access: {
     read: () => true,
