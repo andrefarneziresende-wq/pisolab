@@ -3,6 +3,7 @@ import { buildConfig } from 'payload'
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { seoPlugin } from '@payloadcms/plugin-seo'
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import { es } from '@payloadcms/translations/languages/es'
 import sharp from 'sharp'
 import { fileURLToPath } from 'url'
@@ -81,5 +82,17 @@ export default buildConfig({
       generateDescription: ({ doc }) =>
         (doc as Record<string, string>).excerpt || '',
     }),
+    // Vercel Blob storage for production (images uploaded via admin)
+    // Only active when BLOB_READ_WRITE_TOKEN is set (i.e., in Vercel production)
+    ...(process.env.BLOB_READ_WRITE_TOKEN
+      ? [
+          vercelBlobStorage({
+            collections: {
+              media: true,
+            },
+            token: process.env.BLOB_READ_WRITE_TOKEN,
+          }),
+        ]
+      : []),
   ],
 })
