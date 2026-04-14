@@ -100,13 +100,33 @@ export async function getLegalTexts() {
   return payload.findGlobal({ slug: 'legal-texts' })
 }
 
-// Helper to get media URL from a Payload media object
+// Resolve media URL from a Payload media object
+// Payload 3.x computes /api/media/file/{filename} dynamically
+// but our files are in public/media/ served as static /media/{filename}
 export function getMediaUrl(media: unknown): string {
   if (!media) return '/images/hero-bg.jpg'
-  if (typeof media === 'string') return media
-  if (typeof media === 'object' && media !== null && 'url' in media) {
-    const url = (media as { url: string }).url
-    if (url) return url
+
+  if (typeof media === 'string') {
+    if (media.startsWith('https://')) return media
+    return media
   }
+
+  if (typeof media === 'object' && media !== null) {
+    const obj = media as Record<string, unknown>
+
+    // Absolute URL (Vercel Blob, etc.) — use directly
+    if (typeof obj.url === 'string' && obj.url.startsWith('https://')) {
+      return obj.url
+    }
+
+    // Use filename to build static URL — most reliable
+    if (typeof obj.filename === 'string' && obj.filename) {
+      return `/media/${obj.filename}`
+    }
+
+    // Fallback to whatever url Payload gives
+    if (typeof obj.url === 'string') return obj.url
+  }
+
   return '/images/hero-bg.jpg'
 }
