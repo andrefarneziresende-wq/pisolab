@@ -1,73 +1,10 @@
-// piso.lab Admin — Clean modern theme
-// Strategy: keep Payload's readable defaults, add brand accents
-
-// ─── Light mode ────────────────────────────────────────
-[data-theme="light"] {
-  // Warm off-white background instead of pure white
-  --theme-elevation-0: #faf8f5;
-  --theme-elevation-50: #f5f2ed;
-  --theme-elevation-100: #eeebe5;
-  --theme-elevation-150: #e5e1da;
-  --theme-elevation-200: #dbd7cf;
-  --theme-elevation-250: #d0cbc3;
-
-  // Text stays dark and readable
-  --theme-elevation-800: #2c1f14;
-  --theme-elevation-900: #1c0f07;
-  --theme-elevation-1000: #0d0703;
-
-  // Brand gold as success/accent
-  --theme-success-500: #ac8256;
-}
-
-// ─── Dark mode ─────────────────────────────────────────
-[data-theme="dark"] {
-  // Deep warm brown instead of cold black
-  --theme-elevation-0: #110b06;
-  --theme-elevation-50: #1a1009;
-  --theme-elevation-100: #22160c;
-  --theme-elevation-150: #2c1e12;
-  --theme-elevation-200: #362618;
-
-  // Text stays light and readable
-  --theme-elevation-800: #e8e2d8;
-  --theme-elevation-900: #f3efe8;
-  --theme-elevation-1000: #faf8f5;
-
-  --theme-success-500: #c4a072;
-}
-
-// ─── Global accent overrides ───────────────────────────
-:root {
-  // Border radius — rounder, more modern
-  --style-radius-s: 6px;
-  --style-radius-m: 10px;
-  --style-radius-l: 14px;
-}
-
-// ─── Navigation / Sidebar ──────────────────────────────
-.template-default__nav {
-  border-right-color: rgba(172, 130, 86, 0.12) !important;
-}
-
-// Active nav item accent
-.nav-group .nav-group__toggle:hover,
-.nav a:hover {
-  color: #ac8256 !important;
-}
-
-// ─── Buttons ───────────────────────────────────────────
-.btn {
-  border-radius: 8px !important;
-  font-weight: 600 !important;
-  transition: all 0.15s ease !important;
-}
+// piso.lab Admin — Minimal brand accent theme
+// Only override accent colors, keep everything else default
 
 // Primary button gets brand gold
-.btn.btn--style-primary {
+.btn--style-primary {
   background-color: #ac8256 !important;
   border-color: #ac8256 !important;
-  color: #fff !important;
 
   &:hover {
     background-color: #9a7349 !important;
@@ -75,242 +12,24 @@
   }
 }
 
-// ─── Inputs ────────────────────────────────────────────
+// Focus accent
 input:focus,
 textarea:focus,
-select:focus,
-.react-select__control--is-focused {
+select:focus {
   border-color: #ac8256 !important;
-  box-shadow: 0 0 0 2px rgba(172, 130, 86, 0.15) !important;
 }
 
-// ─── Table rows ────────────────────────────────────────
-.row-1:hover {
-  background-color: rgba(172, 130, 86, 0.06) !important;
+// Active nav item
+.nav-group__content a.active {
+  color: #ac8256 !important;
 }
 
-// ─── Pill / Badge ──────────────────────────────────────
-.pill {
-  border-radius: 20px !important;
-}
-
-.pill--has-action:hover {
-  background-color: rgba(172, 130, 86, 0.1) !important;
-}
-
-// ─── Tabs ──────────────────────────────────────────────
+// Tabs
 .tabs-field__tab-button--active {
   border-bottom-color: #ac8256 !important;
-  color: #ac8256 !important;
 }
 
-.tabs-field__tab-button:hover {
-  color: #ac8256 !important;
-}
-
-// ─── Links ─────────────────────────────────────────────
-a:not(.btn):hover {
-  color: #ac8256 !important;
-}
-
-// ─── Step nav (save bar) ───────────────────────────────
-.step-nav a:hover {
-  color: #ac8256 !important;
-}
-
-// ─── Card styling ──────────────────────────────────────
-.card {
-  border-radius: 12px !important;
-  transition: box-shadow 0.2s ease !important;
-
-  &:hover {
-    box-shadow: 0 4px 20px rgba(172, 130, 86, 0.1) !important;
-  }
-}
-
-// ─── Dashboard collection cards ────────────────────────
-.dashboard__card-list .card {
-  border-radius: 12px !important;
-}
-
-// ─── Upload thumbnail ──────────────────────────────────
-.upload-card,
-.thumbnail {
-  border-radius: 8px !important;
-  overflow: hidden !important;
-}
-
-// ─── Checkbox / Toggle accent ──────────────────────────
-.check:checked,
-.toggle-input:checked + .toggle-icon {
-  background-color: #ac8256 !important;
-  border-color: #ac8256 !important;
-}
-
-// ─── Scrollbar (webkit) ────────────────────────────────
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-::-webkit-scrollbar-thumb {
-  background: rgba(172, 130, 86, 0.25);
-  border-radius: 4px;
-
-  &:hover {
-    background: rgba(172, 130, 86, 0.4);
-  }
-}
-
-// ─── Selection ─────────────────────────────────────────
+// Selection
 ::selection {
   background: rgba(172, 130, 86, 0.3);
-}
-
-// ─── Typography improvements ───────────────────────────
-body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif !important;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-h1, h2, h3, h4, h5 {
-  letter-spacing: -0.01em !important;
-}
-
-// ─── Improved sidebar ──────────────────────────────────
-.nav {
-  padding-top: 8px !important;
-}
-
-.nav-group__label {
-  font-size: 11px !important;
-  letter-spacing: 0.08em !important;
-  text-transform: uppercase !important;
-  opacity: 0.5;
-  font-weight: 600 !important;
-  padding-left: 20px !important;
-  margin-top: 16px !important;
-}
-
-.nav-group__content a {
-  border-radius: 6px !important;
-  margin: 1px 8px !important;
-  padding: 8px 12px !important;
-  font-size: 14px !important;
-  font-weight: 500 !important;
-  transition: all 0.12s ease !important;
-}
-
-.nav-group__content a.active {
-  background: rgba(172, 130, 86, 0.12) !important;
-  color: #ac8256 !important;
-  font-weight: 600 !important;
-}
-
-// ─── Dashboard improvements ────────────────────────────
-.dashboard {
-  max-width: 1200px !important;
-  margin: 0 auto !important;
-}
-
-.dashboard h2 {
-  font-size: 16px !important;
-  font-weight: 700 !important;
-  letter-spacing: -0.02em !important;
-}
-
-// ─── Document view improvements ────────────────────────
-.collection-edit,
-.global-edit {
-  max-width: 960px !important;
-}
-
-// Section titles inside forms
-.field-type .field-label {
-  font-size: 13px !important;
-  font-weight: 600 !important;
-  letter-spacing: 0 !important;
-}
-
-// ─── Header / top bar ──────────────────────────────────
-header.app-header {
-  backdrop-filter: blur(12px) !important;
-  border-bottom-color: rgba(172, 130, 86, 0.1) !important;
-}
-
-// ─── Empty states ──────────────────────────────────────
-.no-results {
-  padding: 60px 20px !important;
-  text-align: center !important;
-  opacity: 0.6;
-}
-
-// ─── Array field items ─────────────────────────────────
-.array-field__row {
-  border-radius: 10px !important;
-  border-color: rgba(172, 130, 86, 0.12) !important;
-  margin-bottom: 8px !important;
-}
-
-// ─── Rich text editor ──────────────────────────────────
-.rich-text-lexical {
-  border-radius: 10px !important;
-}
-
-.rich-text-lexical .ContentEditable__root {
-  min-height: 200px !important;
-  font-size: 15px !important;
-  line-height: 1.7 !important;
-}
-
-// ─── Login page ────────────────────────────────────────
-.login {
-  .form-submit .btn {
-    width: 100% !important;
-    padding: 12px !important;
-    font-size: 15px !important;
-    border-radius: 10px !important;
-    background-color: #ac8256 !important;
-    border-color: #ac8256 !important;
-
-    &:hover {
-      background-color: #9a7349 !important;
-    }
-  }
-
-  input {
-    padding: 12px 14px !important;
-    border-radius: 10px !important;
-    font-size: 15px !important;
-  }
-}
-
-// ─── Modals ────────────────────────────────────────────
-.modal__content {
-  border-radius: 16px !important;
-}
-
-.modal__content .btn {
-  border-radius: 8px !important;
-}
-
-// ─── Toast notifications ───────────────────────────────
-.toast-container .toast {
-  border-radius: 10px !important;
-  font-size: 14px !important;
-}
-
-// ─── Save button bar ───────────────────────────────────
-.doc-controls {
-  border-top-color: rgba(172, 130, 86, 0.1) !important;
-  backdrop-filter: blur(12px) !important;
-}
-
-// ─── Smooth transitions ────────────────────────────────
-.template-default,
-.template-default__nav,
-.template-default__content {
-  transition: background-color 0.2s ease !important;
 }
