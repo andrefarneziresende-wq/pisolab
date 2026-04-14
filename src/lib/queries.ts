@@ -103,26 +103,10 @@ export async function getLegalTexts() {
 // Helper to get media URL from a Payload media object
 export function getMediaUrl(media: unknown): string {
   if (!media) return '/images/hero-bg.jpg'
-  if (typeof media === 'string') {
-    return normalizeMediaUrl(media)
-  }
-  if (typeof media === 'object' && media !== null) {
-    // Try filename first (most reliable for static serving)
-    if ('filename' in media && (media as { filename: string }).filename) {
-      return `/media/${(media as { filename: string }).filename}`
-    }
-    if ('url' in media && (media as { url: string }).url) {
-      return normalizeMediaUrl((media as { url: string }).url)
-    }
+  if (typeof media === 'string') return media
+  if (typeof media === 'object' && media !== null && 'url' in media) {
+    const url = (media as { url: string }).url
+    if (url) return url
   }
   return '/images/hero-bg.jpg'
-}
-
-function normalizeMediaUrl(url: string): string {
-  // Convert Payload API URLs to static paths
-  // /api/media/file/xxx.jpg → /media/xxx.jpg
-  if (url.startsWith('/api/media/file/')) {
-    return '/media/' + url.replace('/api/media/file/', '')
-  }
-  return url
 }
