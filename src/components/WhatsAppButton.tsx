@@ -2,16 +2,17 @@
 
 import { MessageCircle } from 'lucide-react'
 
-export function WhatsAppButton() {
-  const phone = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '34600000000'
-  const message = encodeURIComponent(
-    process.env.NEXT_PUBLIC_WHATSAPP_MESSAGE ||
-      'Hola, me interesa solicitar un presupuesto para...'
-  )
+interface WhatsAppButtonProps {
+  phone?: string
+  message?: string
+}
+
+export function WhatsAppButton({ phone = '34600000000', message = 'Hola, me interesa solicitar un presupuesto para...' }: WhatsAppButtonProps) {
+  const encodedMessage = encodeURIComponent(message)
 
   return (
     <a
-      href={`https://wa.me/${phone}?text=${message}`}
+      href={`https://wa.me/${phone}?text=${encodedMessage}`}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Contactar por WhatsApp"

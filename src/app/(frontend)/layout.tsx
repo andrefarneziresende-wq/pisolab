@@ -5,6 +5,7 @@ import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { WhatsAppButton } from '@/components/WhatsAppButton'
 import { CookieBanner } from '@/components/CookieBanner'
+import { getSiteConfig } from '@/lib/queries'
 
 const leagueSpartan = League_Spartan({
   subsets: ['latin'],
@@ -47,11 +48,15 @@ export const metadata: Metadata = {
   },
 }
 
-export default function FrontendLayout({
+export default async function FrontendLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const config = await getSiteConfig()
+  const whatsappPhone = config.whatsapp?.number || '34600000000'
+  const whatsappMessage = config.whatsapp?.message || 'Hola, me interesa solicitar un presupuesto para...'
+
   return (
     <html
       lang="es"
@@ -70,7 +75,7 @@ export default function FrontendLayout({
           {children}
         </main>
         <Footer />
-        <WhatsAppButton />
+        <WhatsAppButton phone={whatsappPhone} message={whatsappMessage} />
         <CookieBanner />
       </body>
     </html>
